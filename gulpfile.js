@@ -5,27 +5,27 @@ var gulp = require('gulp'),
   $ = require('gulp-load-plugins')();
 
 gulp.task('js', function () {
-  return gulp.src(['src/js/*.js'])
+  return gulp.src(['src/*.js'])
     .pipe($.plumber())
     .pipe($.babel(
       {presets: ['es2015']}
     ))
     // .pipe($.uglify())
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('scss', function(){
-  return gulp.src(['src/scss/*.scss'])
+  return gulp.src(['src/*.scss'])
     .pipe($.plumber())
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('webpack', ['js'], function() {
-  return gulp.src(['./dist/js/pf-alert.js'])
+  return gulp.src(['./dist/pf-alert.component.js'])
     .pipe(webpack())
-    .pipe($.rename('pf-alert-wp.js'))
-    .pipe(gulp.dest('dist/js'));
+    .pipe($.rename('pf-alert.component.webpack.js'))
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('build', ['scss', 'js', 'webpack']);

@@ -1,6 +1,6 @@
 {
   "name": "pf-alert",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "pf-alert for Patternfly web components",
   "main": "pf-alert.js",
   "scripts": {

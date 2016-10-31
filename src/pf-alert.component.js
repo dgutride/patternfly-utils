@@ -1,4 +1,4 @@
-import {default as tmpl} from './pf-alert-tmpl';
+import {default as tmpl} from './pf-alert.template';
 
 // PfAlert Element
 export class PfAlert extends HTMLElement {
