@@ -37,7 +37,8 @@ gulp.task('serve', function(){
     }
   });
 
-  gulp.watch('src/js/*.js', ['build']);
-  gulp.watch('src/sccs/*.sccs', ['build']);
+  gulp.watch('index.html', ['build']);
+  gulp.watch('src/*.js', ['build']);
+  gulp.watch('src/*.scss', ['build']);
   gulp.watch("dist/**/*").on('change', browserSync.reload);
 });
