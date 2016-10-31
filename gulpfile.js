@@ -15,15 +15,16 @@ gulp.task('js', function () {
 });
 
 gulp.task('scss', function(){
-  return gulp.src(['src/scss/*.sccs'])
+  return gulp.src(['src/scss/*.scss'])
+    .pipe($.plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('webpack', ['js'], function() {
-  return gulp.src(['./dist/js/pf-alert-wc.js'])
+  return gulp.src(['./dist/js/pf-alert.js'])
     .pipe(webpack())
-    .pipe($.rename('pf-alert.js'))
+    .pipe($.rename('pf-alert-wp.js'))
     .pipe(gulp.dest('dist/js'));
 });
 
