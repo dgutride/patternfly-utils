@@ -12,7 +12,7 @@
     <div class="page-header">
       <h1>Alerts</h1>
     </div>
-    <pf-alert type="warning">
+    <pf-alert type="warning" id="warning">
       These examples are included for development testing purposes. For official documentation, see
       <a href="https://www.patternfly.org" class="alert-link">https://www.patternfly.org</a> and
       <a href="http://getbootstrap.com" class="alert-link">http://getbootstrap.com</a>
@@ -30,6 +30,18 @@
     <pf-alert type="info">
       <strong>This is some general information.</strong> You should <a href="#" class="alert-link">know about this</a>.
     </pf-alert>
+    <hr>
+    <a onclick="toggleType()">Toggle</a> pf-alert type from warning to danger.
+    <script>
+      function toggleType() {
+        var el = document.getElementById("warning");
+        if (el.getAttribute("type") === "warning") {
+          el.setAttribute("type", "danger");
+        } else {
+          el.setAttribute("type", "warning");
+        }
+      }
+    </script>
   </div>
 </body>
 </html>

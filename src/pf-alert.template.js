@@ -1,7 +1,4 @@
-const PfAlertTmpl = {
-  danger: `<span class="pficon pficon-error-circle-o"></span>`,
-  info: `<span class="pficon pficon-info"></span>`,
-  success: `<span class="pficon pficon-ok"></span>`,
-  warning: `<span class="pficon pficon-warning-triangle-o"></span>`,
-};
+const PfAlertTmpl = `
+<span class="pficon"></span>
+`;
 export {PfAlertTmpl as default};
