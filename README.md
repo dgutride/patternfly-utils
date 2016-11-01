@@ -1,4 +1,4 @@
-# PatternFly Alert for Patternfly Web Components
+# PatternFly utilities for Patternfly Web Components
 This project provides the alert web component for the PatternFly reference implementation.
 
 ---
@@ -7,10 +7,6 @@ This project provides the alert web component for the PatternFly reference imple
 ### Build
     npm install
     gulp build
-### Serve
-    gulp serve
-URL: http://localhost:3000/index.html
-* Uses gulp watch and browser-sync
 
 ## Tech Notes
 

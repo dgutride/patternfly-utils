@@ -1,7 +1,5 @@
 var gulp = require('gulp'),
-  browserSync = require('browser-sync').create(),
   eslint = require('gulp-eslint'),
-  sass = require('gulp-sass'),
   webpack = require('webpack-stream'),
   $ = require('gulp-load-plugins')();
 
@@ -21,31 +19,11 @@ gulp.task('lint', function () {
     .pipe(eslint.failOnError());
 });
 
-gulp.task('scss', function(){
-  return gulp.src(['src/*.scss'])
-    .pipe($.plumber())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('dist'));
-});
-
 gulp.task('webpack', ['js'], function() {
-  return gulp.src(['./dist/pf-alert.component.js'])
+  return gulp.src(['./dist/patternfly-utils.js'])
     .pipe(webpack())
-    .pipe($.rename('pf-alert.component.webpack.js'))
+    .pipe($.rename('patternfly-utils.webpack.js'))
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build', ['scss', 'js', 'webpack']);
-
-gulp.task('serve', function(){
-  browserSync.init({
-    server: {
-      baseDir: './'
-    }
-  });
-
-  gulp.watch('index.html', ['build']);
-  gulp.watch('src/*.js', ['build']);
-  gulp.watch('src/*.scss', ['build']);
-  gulp.watch("dist/**/*").on('change', browserSync.reload);
-});
+gulp.task('build', ['js', 'webpack']);
