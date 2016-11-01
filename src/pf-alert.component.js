@@ -1,13 +1,23 @@
 import {default as tmpl} from './pf-alert.template';
 
-// PfAlert Element
+/**
+ * PfAlert element for Patternfly web components
+ */
 export class PfAlert extends HTMLElement {
-  // Called when an instance was inserted into the document
+  /**
+   * Called when an instance was inserted into the document
+   */
   attachedCallback() {
     this.insertBefore(this._template.content, this.firstChild);
   };
 
-  // Called when element's attribute value has changed
+  /**
+   * Called when element's attribute value has changed
+   *
+   * @param attrName The attribute name that has changed
+   * @param oldValue The old attribute value
+   * @param newValue The new attribute value
+   */
   attributeChangedCallback(attrName, oldValue, newValue) {
     if (attrName === "type") {
       this._resetType(oldValue, newValue);
@@ -15,61 +25,98 @@ export class PfAlert extends HTMLElement {
     }
   };
 
-  // Called when an instance of the element is created
+  /**
+   * Called when an instance of the element is created
+   */
   createdCallback() {
     this._template = document.createElement('template');
     this._template.innerHTML = tmpl;
     this.classList.add("alert");
+    this._initDefaults();
     this._initType();
   };
 
-  // Helper function to update type
+  /**
+   * Helper function to init defaults
+   * @private
+   */
+  _initDefaults() {
+    this._classNames = {
+      "pfalert": {
+        "danger": "alert-danger",
+        "info": "alert-info",
+        "success": "alert-success",
+        "warning": "alert-warning"
+      },
+      "pficon": {
+        "danger": "pficon-error-circle-o",
+        "info": "pficon-info",
+        "success": "pficon-ok",
+        "warning": "pficon-warning-triangle-o"
+      }
+    };
+  }
+
+  /**
+   * Helper function to init alert type
+   * @private
+   */
   _initType() {
     var pficon = this._getElement('.pficon');
     switch (this.getAttribute("type")) {
       case "danger":
-        this.classList.add("alert-danger");
-        pficon.classList.add("pficon-error-circle-o");
+        this.classList.add(this._classNames.pfalert.danger);
+        pficon.classList.add(this._classNames.pficon.danger);
         break;
       case "info":
-        this.classList.add("alert-info");
-        pficon.classList.add("pficon-info");
+        this.classList.add(this._classNames.pfalert.info);
+        pficon.classList.add(this._classNames.pficon.info);
         break;
       case "success":
-        this.classList.add("alert-success");
-        pficon.classList.add("pficon-ok");
+        this.classList.add(this._classNames.pfalert.success);
+        pficon.classList.add(this._classNames.pficon.success);
         break;
       case "warning":
-        this.classList.add("alert-warning");
-        pficon.classList.add("pficon-warning-triangle-o");
+        this.classList.add(this._classNames.pfalert.warning);
+        pficon.classList.add(this._classNames.pficon.warning);
         break;
     }
   }
 
-  // Helper function to reset type
+  /**
+   * Helper function to reset alert type
+   * @param oldValue The old attribute value
+   * @private
+   */
   _resetType(oldValue) {
     var pficon = this._getElement('.pficon');
     switch (oldValue) {
       case "danger":
-        this.classList.remove("alert-danger");
-        pficon.classList.remove("pficon-error-circle-o");
+        this.classList.remove(this._classNames.pfalert.danger);
+        pficon.classList.remove(this._classNames.pficon.danger);
         break;
       case "info":
-        this.classList.remove("alert-info");
-        pficon.classList.remove("pficon-info");
+        this.classList.remove(this._classNames.pfalert.info);
+        pficon.classList.remove(this._classNames.pficon.info);
         break;
       case "success":
-        this.classList.remove("alert-success");
-        pficon.classList.remove("pficon-ok");
+        this.classList.remove(this._classNames.pfalert.success);
+        pficon.classList.remove(this._classNames.pficon.success);
         break;
       case "warning":
-        this.classList.remove("alert-warning");
-        pficon.classList.remove("pficon-warning-triangle-o");
+        this.classList.remove(this._classNames.pfalert.warning);
+        pficon.classList.remove(this._classNames.pficon.warning);
         break;
     }
   }
 
-  // Get pficon from this node or doc fragment
+  /**
+   * Get pficon from this node or document fragment
+   *
+   * @param selector The query selector identifying the element to retrieve
+   * @returns {Element}
+   * @private
+   */
   _getElement(selector) {
     var el = this.querySelector(selector);
     if (el === null) {
