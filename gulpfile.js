@@ -1,10 +1,11 @@
 var gulp = require('gulp'),
   browserSync = require('browser-sync').create(),
+  eslint = require('gulp-eslint'),
   sass = require('gulp-sass'),
   webpack = require('webpack-stream'),
   $ = require('gulp-load-plugins')();
 
-gulp.task('js', function () {
+gulp.task('js', ['lint'], function () {
   return gulp.src(['src/*.js'])
     .pipe($.plumber())
     .pipe($.babel(
@@ -12,6 +13,12 @@ gulp.task('js', function () {
     ))
     // .pipe($.uglify())
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('lint', function () {
+  return gulp.src(['src/*.js'])
+    .pipe(eslint('eslint.json'))
+    .pipe(eslint.failOnError());
 });
 
 gulp.task('scss', function(){

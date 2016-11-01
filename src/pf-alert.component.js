@@ -7,9 +7,9 @@ export class PfAlert extends HTMLElement {
   /**
    * Called when an instance was inserted into the document
    */
-  attachedCallback() {
+  attachedCallback () {
     this.insertBefore(this._template.content, this.firstChild);
-  };
+  }
 
   /**
    * Called when element's attribute value has changed
@@ -18,29 +18,29 @@ export class PfAlert extends HTMLElement {
    * @param {string} oldValue The old attribute value
    * @param {string} newValue The new attribute value
    */
-  attributeChangedCallback(attrName, oldValue, newValue) {
+  attributeChangedCallback (attrName, oldValue, newValue) {
     if (attrName === "type") {
       this._resetType(oldValue, newValue);
       this._initType();
     }
-  };
+  }
 
   /**
    * Called when an instance of the element is created
    */
-  createdCallback() {
+  createdCallback () {
     this._template = document.createElement('template');
     this._template.innerHTML = tmpl;
     this.classList.add("alert");
     this._initDefaults();
     this._initType();
-  };
+  }
 
   /**
    * Helper function to init defaults
    * @private
    */
-  _initDefaults() {
+  _initDefaults () {
     this._classNames = {
       "pfalert": {
         "danger": "alert-danger",
@@ -61,8 +61,8 @@ export class PfAlert extends HTMLElement {
    * Helper function to init alert type
    * @private
    */
-  _initType() {
-    var pficon = this._getElement('.pficon');
+  _initType () {
+    let pficon = this._getElement('.pficon');
     switch (this.getAttribute("type")) {
       case "danger":
         this.classList.add(this._classNames.pfalert.danger);
@@ -88,8 +88,8 @@ export class PfAlert extends HTMLElement {
    * @param oldValue The old attribute value
    * @private
    */
-  _resetType(oldValue) {
-    var pficon = this._getElement('.pficon');
+  _resetType (oldValue) {
+    let pficon = this._getElement('.pficon');
     switch (oldValue) {
       case "danger":
         this.classList.remove(this._classNames.pfalert.danger);
@@ -117,14 +117,14 @@ export class PfAlert extends HTMLElement {
    * @returns {Element}
    * @private
    */
-  _getElement(selector) {
-    var el = this.querySelector(selector);
+  _getElement (selector) {
+    let el = this.querySelector(selector);
     if (el === null) {
       el = this._template.content.querySelector(selector);
     }
     return el;
   }
 }
-(function() {
+(function () {
   document.registerElement('pf-alert', PfAlert);
 }());
