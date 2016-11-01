@@ -1,4 +1,4 @@
-const PfAlertTmpl = `
+const PfAlertTemplate = `
 <span class="pficon"></span>
 `;
-export {PfAlertTmpl as default};
+export {PfAlertTemplate as default};

@@ -14,9 +14,9 @@ export class PfAlert extends HTMLElement {
   /**
    * Called when element's attribute value has changed
    *
-   * @param attrName The attribute name that has changed
-   * @param oldValue The old attribute value
-   * @param newValue The new attribute value
+   * @param {string} attrName The attribute name that has changed
+   * @param {string} oldValue The old attribute value
+   * @param {string} newValue The new attribute value
    */
   attributeChangedCallback(attrName, oldValue, newValue) {
     if (attrName === "type") {
